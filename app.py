@@ -1,5 +1,6 @@
 from time import strftime
 from tkinter import Label, Tk
+from weather import get_weather
 
 # ======= Configuring window =========
 window = Tk()
@@ -12,6 +13,17 @@ clock_label = Label(
     window, bg="black", fg="white", font=("Arial", 30, "bold"), relief="flat"
 )
 clock_label.pack(anchor="center")
+
+data = get_weather("9bbff687e1d8b4852e645bf63588999e" , "London")
+if data is not None:
+      temp = data['temp']
+      pressure = data['pressure']
+      humidity = data['humidity']
+      print(data)
+      weather_label = Label(window ,font=("Arial", 20, "bold"), text="Weather in London\n Temperature: " + str(temp) + "°C\n" "Pressure: " + str(pressure) + "hPa" + "\nHumidity: " + str(humidity) + "%")
+      weather_label.pack(anchor="s")
+
+
 
 def update_label():
     """
